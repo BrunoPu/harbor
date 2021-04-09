@@ -1,0 +1,22 @@
+---
+# Source: harbor/templates/jobservice/jobservice-cm-envvars.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: RELEASE-NAME-harbor-jobservice-envvars
+  labels:
+    app.kubernetes.io/name: harbor
+    helm.sh/chart: harbor-9.8.3
+    app.kubernetes.io/instance: RELEASE-NAME
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: jobservice
+data:
+  CORE_URL: "http://RELEASE-NAME-harbor-core:80"
+  TOKEN_SERVICE_URL: "http://RELEASE-NAME-harbor-core:80/service/token"
+  REGISTRY_URL: "http://RELEASE-NAME-harbor-registry:5000"
+  REGISTRY_CONTROLLER_URL: "http://RELEASE-NAME-harbor-registry:8080"
+  REGISTRY_CREDENTIAL_USERNAME: "harbor_registry_user"
+  HTTP_PROXY: ""
+  HTTPS_PROXY: ""
+  NO_PROXY: "RELEASE-NAME-harbor-core,RELEASE-NAME-harbor-jobservice,RELEASE-NAME-harbor-database,RELEASE-NAME-harbor-chartmuseum,RELEASE-NAME-harbor-clair,RELEASE-NAME-harbor-notary-server,RELEASE-NAME-harbor-notary-signer,RELEASE-NAME-harbor-registry,RELEASE-NAME-harbor-portal,RELEASE-NAME-harbor-trivy,127.0.0.1,localhost,.local,.internal"
+  LOG_LEVEL: "debug"
